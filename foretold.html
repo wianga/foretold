@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>Foretold</title>
+    <style>
+a:active,a:focus,a:hover,a:target{font-style:inherit}a,a:focus,a:target{color:#008f8f;text-decoration:none;font-weight:400;transition:color .2s ease-in-out}body{background-color:#0c0c0c;font-family:"Times New Roman",serif;text-align:left;color:#d0d0d0;width:28em;padding:3em;font-size:2em;line-height:175%;margin-bottom:2em}a:hover{color:#00afaf;text-decoration:none;font-weight:400}a:active{color:#0ff;text-decoration:none;font-weight:400}.link,a,tw-icon{cursor:pointer}
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+(function(g){var a={},c=0;window.location.hash&&(c=window.location.hash.replace("#",""),a.hash=c,history.pushState("",document.title,window.location.pathname+window.location.search));g.fn.getWait=function(a){return""===a?0:-1!==".!?".indexOf(a.slice(-1))?520:-1!==",;:-".indexOf(a.slice(-1))?280:40};g.fn.handleAction=function(d){if("input"===d.action)a[d.db]=JSON.stringify(g("input."+d.db+"[type="+(d.type||"text")+"]").val());else if("cls"===d.action||"json"===d.action||d.go){if("json"===d.action)try{a.parts=
+JSON.parse(g("textarea.json").val()),c=0}catch(e){alert(e);return}this.empty();a.hash=c;a.html.s="";a.html.e="";if(d.go)if(Number(d.go))c=Number(d.go);else if(a.at.hasOwnProperty(d.go))c=a.at[d.go];else for(;c!=Object.keys(a.parts).length;){var f=a.parts[c];if(f.at&&(a.at[f.at]=c,f.at===d.go))break;c+=1}}else a.html.s=a.html.store,a.html.e="",this.html(a.html.s+a.html.e)};g.fn.tell=function(d){var f=0,e=this,l=[],m=!1;a={say:{},at:{},html:{s:"",e:""},description:{},parts:d||["Paste a json story here and start:<br>",
+{id:"textarea"},{id:"link",action:"json",match:"start"}]};var k=function(){clearInterval(h);if(f<l.length)h=setInterval(k,e.getWait(l[f])),f&&(a.html.s+=" "),a.html.s+=l[f++],e.html(a.html.s+a.html.e);else if(c!==a.parts.length)if(m)a.html.s+=a.html.e,a.html.e="";else{var b=a.parts[c],d=b.wait?40*b.wait:0;a.html.s+=a.html.e;a.html.e="";b.at&&(a.at[b.name]=c);if("object"===typeof b){if("link"===b.id){"restore"!==b.action&&(a.html.store=e.html()+(b.text||""));if(b.match){var n=b.match,p=a.html.s.split(n);
+a.html.e=p.pop()+a.html.e;a.html.s=p.join(n)+"<a id='"+c+"' href='#"+c+"' class='choice'>"+n+"</a>"}else a.html.s+="<a id='"+c+"' href='#"+c+"' class='choice'>",a.html.e="</a>"+a.html.e;e.html(a.html.s+a.html.e).off("click","a.choice").on("click","a.choice",function(b){b.preventDefault();b=a.parts[Number(g(this).attr("id"))];e.handleAction(b);a.hash&&(window.location.hash=a.hash);h=setInterval(k,400);return m=!1});b.multi||(m=!0)}else if("input"===b.id)a.html.s+='<input type="text" class="'+b.db+
+'">';else if("textarea"===b.id)a.html.s+='<textarea type="text" class="json">',a.html.e+="</textarea>";else if("db"===b.id)g.each(b,function(b,c){"id"!==b&&e.extend(a[b],c)});else if("description"===b.id)b.text=(b.inline?" ":"")+a.description[b.what];else if("action"===b.id)e.handleAction(b);else if(a.say.hasOwnProperty(b.id))a.html.s+='<span style="'+a.say[b.id]+'">',a.html.e="</span>"+a.html.e;else if(b.id)e.html("unrecognized part:"+JSON.stringify(b));else if(b.action){h=setInterval(function(){e.handleAction(b);
+clearInterval(h);h=setInterval(k,0)},d);c+=1;return}b=b.text}"string"===typeof b&&(b.match(/^[.!?,;:-]? /)||(a.html.s+="<br><br>"),f=0,l=b.split(" "));h=setInterval(k,d);c+=1}},h=setInterval(k,0)}})(jQuery);$(document).ready(function(){$("#story").tell()});
+    </script>
+    <div id="story">
+    </div>
+  </body>
+</html>
